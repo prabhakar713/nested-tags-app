@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import List, Dict, Any
@@ -50,6 +51,18 @@ class TreeResponse(BaseModel):
 @app.get("/", tags=["Health"])
 def health():
     return {"status": "ok"}
+
+
+@app.get("/health/db", tags=["Health"])
+def health_db():
+    """Simple DB connectivity check. Returns 200 if a test query succeeds, 500 otherwise."""
+    try:
+        # Execute a simple no-op query to verify DB connectivity
+        with database.engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {"database": "ok"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"DB connection failed: {e}")
 
 @app.get("/trees", response_model=List[TreeResponse])
 def get_trees(db: Session = Depends(get_db)):
