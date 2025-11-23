@@ -10,10 +10,19 @@ import os
 
 app = FastAPI(title="Nested Tags Tree API")
 
-# Use your Vercel frontend domain for CORS in production
+# Configure CORS origins via environment variable `FRONTEND_ORIGINS`
+# Comma-separated list, e.g. "https://app.vercel.app,http://localhost:5173"
+# If not provided (e.g. quick deploy), default to allow all origins so deployed frontends can reach the API.
+# NOTE: For production lock this down by setting `FRONTEND_ORIGINS` to the exact frontend URL(s).
+frontend_env = os.environ.get("FRONTEND_ORIGINS")
+if frontend_env:
+    allow_origins = [u.strip() for u in frontend_env.split(",") if u.strip()]
+else:
+    allow_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend.vercel.app", "http://localhost:5173"],  # Change to your actual Vercel domain
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

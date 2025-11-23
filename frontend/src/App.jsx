@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import TagView from './components/TagView'
 
-// Use environment variable for API URL, fallback to localhost for local dev
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/trees'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000'
+const API_URL = `${API_BASE.replace(/\/$/, '')}/trees`
 
 function prune(node) {
     const out = { name: node.name };
