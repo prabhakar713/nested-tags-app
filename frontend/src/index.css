@@ -1,0 +1,120 @@
+/* Overall container */
+.app-container {
+    max-width: 980px;
+    margin: 18px auto;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #0f172a;
+    padding: 12px;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.app-header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Buttons */
+.btn {
+    border: 1px solid #cbd5e1;
+    background: #f1f5f9;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+.btn.primary { background:#2563eb; color:#fff; border-color:#1d4ed8; }
+.btn.success { background:#16a34a; color:#fff; border-color:#15803d; }
+.btn.small { padding:4px 8px; font-size:0.85rem; }
+.btn.tiny { padding:3px 6px; font-size:0.75rem; }
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(2,6,23,0.06);
+}
+
+/* Tree specific */
+.tree-card { padding: 12px; }
+.tree-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.tree-title { font-weight: 600; }
+.id-tag { color: #475569; margin-left: 8px; font-size: 0.9rem; }
+.unsaved { color: #9ca3af; margin-left: 8px; font-size: 0.9rem; }
+
+/* TagView styles (blue headers and nested structure like screenshots) */
+.tag-wrapper { margin-left: 4px; border-left: 4px solid #c7d2fe; padding-left: 8px; margin-bottom: 10px; }
+
+.tag-header {
+    display: flex;
+    align-items: center;
+    background: #7fb0f1; /* blue header */
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: #05264a;
+    gap: 10px;
+    border: 2px solid #3b82f6; /* small outline like screenshot */
+}
+
+.collapse-btn {
+    width: 36px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #e6eefc;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.tag-name { flex: 1; font-size: 16px; }
+.name-text { cursor: pointer; font-weight: 600; }
+.name-input { padding: 6px 8px; border-radius: 6px; border: 1px solid #cbd5e1; width: 70%; }
+
+/* Add Child / action area aligned to right */
+.tag-actions { display:flex; align-items:center; }
+
+/* tag-body (white area containing children or data) */
+.tag-body {
+    background: #f8fafc;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    margin-top: 8px;
+    border-radius: 4px;
+}
+
+/* Data input row */
+.data-row { display:flex; align-items:center; gap:8px; margin-top:6px; }
+.data-label { width:48px; color:#475569; font-weight:600; }
+.data-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: white;
+}
+
+/* Children list and child card */
+.children-list { display:flex; flex-direction:column; gap:10px; }
+.child-card { background: white; border-radius: 6px; padding: 8px; border: 1px solid #cfe0ff; }
+
+/* child controls */
+.child-controls { display:flex; justify-content:flex-end; margin-bottom:6px; }
+
+/* JSON output */
+.json-output {
+    margin-top: 10px;
+    background: #0f172a;
+    color: #d1fae5;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+ 
