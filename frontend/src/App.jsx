@@ -18,6 +18,7 @@ export default function App() {
     const [trees, setTrees] = useState([]); // { id, tree }
     const [loading, setLoading] = useState(true);
     const [jsonOutputMap, setJsonOutputMap] = useState({}); // id -> json string
+    const [debugError, setDebugError] = useState(null);
 
     const fetchTrees = async () => {
         try {
@@ -66,6 +67,9 @@ export default function App() {
         const rec = trees[idx];
         const payload = { data: prune(rec.tree) };
         try {
+            // Debug: print API URL and payload so we can see what the deployed frontend is calling
+            console.log('Saving tree to API_URL=', API_URL);
+            console.log('Payload=', payload);
             if (rec.id) {
                 // update
                 const res = await fetch(`${API_URL}/${rec.id}`, {
@@ -100,6 +104,7 @@ export default function App() {
             }
         } catch (e) {
             console.error(e);
+            setDebugError(String(e && (e.message || e)));
             alert("Save failed: " + (e.message || e));
         }
     }
@@ -119,6 +124,14 @@ export default function App() {
                     </button>
                 </div>
             </header>
+
+            {/* Debug panel: shows which API base the build is using and last save error */}
+            <div style={{padding: '8px 16px', fontSize: 12, color: '#333'}}>
+                <div><strong>API_BASE:</strong> {API_BASE}</div>
+                {debugError && (
+                    <div style={{color: 'red'}}><strong>Last save error:</strong> {debugError}</div>
+                )}
+            </div>
 
             {loading && <div className="card">Loading trees...</div>}
 
